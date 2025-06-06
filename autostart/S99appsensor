@@ -1,0 +1,29 @@
+case "$1" in
+  start)
+    echo "👉 Starting sensor system..."
+
+    insmod /lib/modules/6.0.9/extra/mq2sensor.ko
+    insmod /lib/modules/6.0.9/extra/dht11.ko
+    insmod /lib/modules/6.0.9/extra/buzzer.ko
+    sleep 1
+
+    echo ON > /dev/mq2adc
+    echo ON > /dev/dht11
+
+    /usr/bin/appsensor &
+    echo "✅ appsensor started."
+    ;;
+  stop)
+    echo "🛑 Stopping appsensor..."
+    killall appsensor
+    ;;
+  restart)
+    $0 stop
+    $0 start
+    ;;
+  *)
+    echo "Usage: /etc/init.d/S99appsensor {start|stop|restart}"
+    exit 1
+esac
+
+exit 0

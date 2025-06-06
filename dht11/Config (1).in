@@ -1,0 +1,4 @@
+config BR2_PACKAGE_DHT11
+    bool "dht11 driver"
+    help
+      Kernel module for DHT11 temperature/humidity sensor

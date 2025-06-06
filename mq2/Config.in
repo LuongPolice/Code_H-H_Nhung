@@ -1,0 +1,4 @@
+config BR2_PACKAGE_MQ2SENSOR
+    bool "mq2sensor driver"
+    help
+      Kernel module for MQ2 gas sensor using ADS1115 via I2C bit-banging

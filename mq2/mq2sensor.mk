@@ -1,0 +1,16 @@
+MQ2SENSOR_VERSION = 1.0
+MQ2SENSOR_SITE = $(TOPDIR)/package/mq2sensor
+MQ2SENSOR_SITE_METHOD = local
+
+define MQ2SENSOR_BUILD_CMDS
+	$(MAKE) ARCH=$(KERNEL_ARCH) CROSS_COMPILE="$(TARGET_CROSS)" \
+		-C $(LINUX_DIR) M=$(MQ2SENSOR_SITE) modules
+endef
+
+define MQ2SENSOR_INSTALL_TARGET_CMDS
+	$(MAKE) ARCH=$(KERNEL_ARCH) CROSS_COMPILE="$(TARGET_CROSS)" \
+		-C $(LINUX_DIR) M=$(MQ2SENSOR_SITE) INSTALL_MOD_PATH=$(TARGET_DIR) modules_install
+endef
+
+$(eval $(kernel-module))
+$(eval $(generic-package))

@@ -1,0 +1,4 @@
+config BR2_PACKAGE_BUZZER
+    bool "buzzer driver"
+    help
+      Kernel module to control a buzzer on BeagleBone Black
